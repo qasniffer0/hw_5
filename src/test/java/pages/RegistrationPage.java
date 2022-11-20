@@ -78,8 +78,9 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setImgPicture(String imgPath) {
-        uploadPictureForm.uploadFile(new File(imgPath));
+    public RegistrationPage setImgPicture(String png) {
+        uploadPictureForm.uploadFromClasspath("1.png");
+
         return this;
     }
 
@@ -111,15 +112,15 @@ public class RegistrationPage {
         return this;
     }
 
-    // asserts
-    public RegistrationPage checkModalContent() {
-        modalContent.shouldBe(visible);
+    public RegistrationPage verifyModalAppears() {
+        registrationResultsModal.verifyModal();
         return this;
     }
 
-    public void checkForm(String firstName, String lastName, String userEmail, String userNumber, String day, String month, String year, String userGender, String hobbies, String address, String state, String city) {
-        tableResponsive.shouldHave(text(firstName), text(lastName),
-                text(userEmail), text(day), text(month), text(year), text(userGender), text(hobbies), text(address),
-                text(userNumber), text(state), text(city));
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationResultsModal.verifyResult(key, value);
+        return this;
     }
+
+
 }

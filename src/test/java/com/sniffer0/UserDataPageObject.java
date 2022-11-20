@@ -13,13 +13,13 @@ public class UserDataPageObject extends BaseTest {
     String lastName = "Grey";
     String userEmail = "grey@gmail.com";
     String userGender = "Male";
-    String userNumber = "89997775646";
+    String userNumber = "8999777564";
     String day = "17";
-    String month = "July";
+    String month = "June";
     String year = "2011";
     String subject = "Computer Science";
     String hobbies = "Sports";
-    String img = "1.jpeg";
+    String img = "1.png";
     String address = "Moscow, Kamchatovscaya 68";
     String state = "NCR";
     String city = "Gurgaon";
@@ -41,8 +41,16 @@ public class UserDataPageObject extends BaseTest {
         registrationPage.setStateAndCity(state, city);
         registrationPage.pressSubmitButton();
 
-
-        registrationPage.checkModalContent();
-        registrationPage.checkForm(firstName, lastName, userEmail, userNumber, day, month, year, userGender, hobbies, address, state, city);
+        registrationPage.verifyModalAppears()
+                .verifyResult("Student Name", firstName + " " + lastName)
+                .verifyResult("Student Email", userEmail)
+                .verifyResult("Gender", userGender)
+                .verifyResult("Mobile", userNumber)
+                .verifyResult("Date of Birth", day + " " + month + "," + year)
+                .verifyResult("Subjects", subject)
+                .verifyResult("Hobbies", hobbies)
+                .verifyResult("Picture", img)
+                .verifyResult("Address", address)
+                .verifyResult("State and City", state + " " + city);
     }
 }
