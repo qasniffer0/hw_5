@@ -5,7 +5,7 @@ import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class UserDataPageObject extends BaseTest {
+public class UserDataPageObjectTest extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
