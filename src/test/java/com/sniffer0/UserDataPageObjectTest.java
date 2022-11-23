@@ -3,54 +3,42 @@ package com.sniffer0;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class UserDataPageObjectTest extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
-
-    String firstName = "Serg";
-    String lastName = "Grey";
-    String userEmail = "grey@gmail.com";
-    String userGender = "Male";
-    String userNumber = "8999777564";
-    String day = "17";
-    String month = "June";
-    String year = "2011";
-    String subject = "Computer Science";
-    String hobbies = "Sports";
-    String img = "1.png";
-    String address = "Moscow, Kamchatovscaya 68";
-    String state = "NCR";
-    String city = "Gurgaon";
+    RegistrationFakerTest reg = new RegistrationFakerTest();
+     String img = "1.png";
 
     @Test
     void registrationTest() {
         registrationPage.openPage();
-        registrationPage.setFirstName(firstName);
-        registrationPage.setLastName(lastName);
-        registrationPage.setUserEmail(userEmail);
-        registrationPage.setGender(userGender);
-        registrationPage.setNumber(userNumber);
-        registrationPage.setBirthDate(day, month, year);
-        registrationPage.setSubjects(subject);
-        registrationPage.chooseHobbie(hobbies);
+        registrationPage.setFirstName(reg.firstName);
+        registrationPage.setLastName(reg.lastName);
+        registrationPage.setUserEmail(reg.userEmail);
+        registrationPage.setGender(reg.userGender);
+        registrationPage.setNumber(reg.userNumber);
+        registrationPage.setBirthDate(reg.day, reg.month, reg.year);
+        registrationPage.setSubjects(reg.subject);
+        registrationPage.chooseHobbie(reg.hobbies);
         registrationPage.setImgPicture(img);
-        registrationPage.setAddress(address);
+        registrationPage.setAddress(reg.address1);
         registrationPage.scrollToSubmitButton();
-        registrationPage.setStateAndCity(state, city);
+        registrationPage.setStateAndCity(reg.state, reg.city);
         registrationPage.pressSubmitButton();
 
         registrationPage.verifyModalAppears()
-                .verifyResult("Student Name", firstName + " " + lastName)
-                .verifyResult("Student Email", userEmail)
-                .verifyResult("Gender", userGender)
-                .verifyResult("Mobile", userNumber)
-                .verifyResult("Date of Birth", day + " " + month + "," + year)
-                .verifyResult("Subjects", subject)
-                .verifyResult("Hobbies", hobbies)
+                .verifyResult("Student Name", reg.firstName + " " + reg.lastName)
+                .verifyResult("Student Email", reg.userEmail)
+                .verifyResult("Gender", reg.userGender)
+                .verifyResult("Mobile", reg.userNumber)
+                .verifyResult("Date of Birth", reg.day + " " + reg.month + "," + reg.year)
+                .verifyResult("Subjects", reg.subject)
+                .verifyResult("Hobbies", reg.hobbies)
                 .verifyResult("Picture", img)
-                .verifyResult("Address", address)
-                .verifyResult("State and City", state + " " + city);
+                .verifyResult("Address", reg.address1)
+                .verifyResult("State and City", reg.state + " " + reg.city);
     }
 }

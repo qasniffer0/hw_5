@@ -2,7 +2,6 @@ package com.sniffer0;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
-import pages.RegistrationPage;
 
 abstract class BaseTest {
 
