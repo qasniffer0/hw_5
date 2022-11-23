@@ -3,14 +3,11 @@ package com.sniffer0;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-
-import static com.codeborne.selenide.Selenide.open;
-
 public class UserDataPageObjectTest extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
     RegistrationFakerTest reg = new RegistrationFakerTest();
-     String img = "1.png";
+    String img = "1.png";
 
     @Test
     void registrationTest() {
